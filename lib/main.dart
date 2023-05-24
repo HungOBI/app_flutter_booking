@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
-import 'customButton1.dart';
-import 'customButton2.dart';
+import 'custom/customButton1.dart';
+import 'custom/customButton2.dart';
+import 'custom/customNavigatinonBar.dart';
 
 void main() {
   runApp(const MyApp());
@@ -38,19 +39,26 @@ class _MyHomePageState extends State<MyHomePage> {
   Color textColor = Colors.black;
   Color originalButtonColor = Colors.white;
   Color originalTextColor = Colors.black;
-  bool isButton1Pressed = false;
-  bool isButton2Pressed = false;
-  bool isButton3Pressed = false;
-  bool isButton4Pressed = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: const Text(
+          'My Appointment',
+          style: TextStyle(color: Colors.black),
+        ),
+        centerTitle: true,
+        backgroundColor: Colors.white,
+        elevation: 0,
+      ),
+      backgroundColor: Colors.white,
       body: Column(
         children: [
           Container(
             width: double.infinity,
             height: 106,
-            margin: const EdgeInsets.only(left: 24, top: 141, right: 24),
+            margin: const EdgeInsets.only(left: 24, top: 50, right: 24),
             color: const Color.fromRGBO(214, 255, 250, 1),
             child: SingleChildScrollView(
               scrollDirection: Axis.horizontal,
@@ -61,8 +69,8 @@ class _MyHomePageState extends State<MyHomePage> {
                     final now = DateTime.now().add(Duration(days: index));
                     final dayOfWeek = _getDayOfWeek(now.weekday);
                     final isSelected = selectedDay == index;
-                    return Positioned(
-                      left: (index * 100).toDouble(),
+                    return Container(
+                      padding: const EdgeInsets.fromLTRB(8, 0, 8, 0),
                       child: GestureDetector(
                           onTap: () {
                             setState(
@@ -125,16 +133,29 @@ class _MyHomePageState extends State<MyHomePage> {
                 height: 40,
                 text: 'Upcoming',
                 textSize: 14,
-                backgroundColor: Color.fromRGBO(217, 217, 217, 1),
+                backgroundColor: const Color.fromRGBO(217, 217, 217, 1),
                 textColor: Colors.black,
-                onTap: () {},
+                onTap: () {
+                  const snackDemo = SnackBar(
+                    content: Text('test button'),
+                    backgroundColor: Colors.green,
+                    elevation: 1,
+                    behavior: SnackBarBehavior.floating,
+                    margin: EdgeInsets.only(
+                      left: 20,
+                      right: 20,
+                      bottom: 50,
+                    ),
+                  );
+                  ScaffoldMessenger.of(context).showSnackBar(snackDemo);
+                },
               ),
               CustomButton2(
                 width: 100,
                 height: 40,
                 text: 'Completed',
                 textSize: 14,
-                backgroundColor: Color.fromRGBO(217, 217, 217, 1),
+                backgroundColor: const Color.fromRGBO(217, 217, 217, 1),
                 textColor: Colors.black,
                 onTap: () {},
               ),
@@ -143,14 +164,14 @@ class _MyHomePageState extends State<MyHomePage> {
                 height: 40,
                 text: 'Cancelled',
                 textSize: 14,
-                backgroundColor: Color.fromRGBO(217, 217, 217, 1),
+                backgroundColor: const Color.fromRGBO(217, 217, 217, 1),
                 textColor: Colors.black,
                 onTap: () {},
               ),
             ],
           ),
-          SizedBox(height: 45),
-          Container(
+          const SizedBox(height: 45),
+          SizedBox(
             width: 382,
             height: 107,
             child: Row(
@@ -167,13 +188,13 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                 ),
                 Container(
-                  color: Color.fromRGBO(217, 217, 217, 1),
+                  color: const Color.fromRGBO(217, 217, 217, 1),
                   width: 282,
                   child: Row(
                     children: [
-                      Container(
+                      const SizedBox(
                         width: 99,
-                        child: const Icon(
+                        child: Icon(
                           Icons.image,
                           color: Color.fromRGBO(255, 255, 255, 1),
                           size: 42.75,
@@ -211,11 +232,12 @@ class _MyHomePageState extends State<MyHomePage> {
                                 height: 30,
                                 text: 'View',
                                 textSize: 14,
-                                buttonColor: Color.fromRGBO(217, 217, 217, 1),
+                                buttonColor:
+                                    const Color.fromRGBO(217, 217, 217, 1),
                                 textColor: Colors.black,
                                 onPressed: () {},
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 width: 16,
                               ),
                               CustomButton(
@@ -223,7 +245,8 @@ class _MyHomePageState extends State<MyHomePage> {
                                 height: 30,
                                 text: 'Cancel',
                                 textSize: 14,
-                                buttonColor: Color.fromRGBO(217, 217, 217, 1),
+                                buttonColor:
+                                    const Color.fromRGBO(217, 217, 217, 1),
                                 textColor: Colors.black,
                                 onPressed: () {},
                               ),
@@ -237,8 +260,8 @@ class _MyHomePageState extends State<MyHomePage> {
               ],
             ),
           ),
-          SizedBox(height: 24),
-          Container(
+          const SizedBox(height: 24),
+          SizedBox(
             width: 382,
             height: 107,
             child: Row(
@@ -255,13 +278,13 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                 ),
                 Container(
-                  color: Color.fromRGBO(217, 217, 217, 1),
+                  color: const Color.fromRGBO(217, 217, 217, 1),
                   width: 282,
                   child: Row(
                     children: [
-                      Container(
+                      const SizedBox(
                         width: 99,
-                        child: const Icon(
+                        child: Icon(
                           Icons.image,
                           color: Color.fromRGBO(255, 255, 255, 1),
                           size: 42.75,
@@ -299,11 +322,12 @@ class _MyHomePageState extends State<MyHomePage> {
                                 height: 30,
                                 text: 'View',
                                 textSize: 14,
-                                buttonColor: Color.fromRGBO(217, 217, 217, 1),
+                                buttonColor:
+                                    const Color.fromRGBO(217, 217, 217, 1),
                                 textColor: Colors.black,
                                 onPressed: () {},
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 width: 16,
                               ),
                               CustomButton(
@@ -311,7 +335,8 @@ class _MyHomePageState extends State<MyHomePage> {
                                 height: 30,
                                 text: 'Cancel',
                                 textSize: 14,
-                                buttonColor: Color.fromRGBO(217, 217, 217, 1),
+                                buttonColor:
+                                    const Color.fromRGBO(217, 217, 217, 1),
                                 textColor: Colors.black,
                                 onPressed: () {},
                               ),
@@ -326,6 +351,10 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
           ),
         ],
+      ),
+      bottomNavigationBar: CustomNavigationBar(
+        activeColor: Colors.black,
+        inactiveColor: Color.fromARGB(255, 153, 153, 152),
       ),
     );
   }
