@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'customButtonInCart.dart';
 import 'customButtonInMenu.dart';
-import 'customNavigatinonBar.dart';
+import '../../lib/customNavigatinonBar.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
