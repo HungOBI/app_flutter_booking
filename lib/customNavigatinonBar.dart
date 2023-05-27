@@ -3,10 +3,11 @@ import 'package:flutter/material.dart';
 class CustomNavigationBar extends StatefulWidget {
   final Color activeColor;
   final Color inactiveColor;
-
+  //final ValueChanged<int> onTap;
   const CustomNavigationBar({
-    required this.activeColor,
-    required this.inactiveColor,
+    this.activeColor = Colors.black,
+    this.inactiveColor = const Color.fromARGB(255, 153, 153, 152),
+    //  required this.onTap,
   });
 
   @override
@@ -17,11 +18,12 @@ class _CustomNavigationBarState extends State<CustomNavigationBar> {
   int _currentIndex = 0;
   final List<IconData> _icons = [
     Icons.home,
-    Icons.menu_book,
-    Icons.lock_clock,
+    Icons.menu,
+    Icons.punch_clock_sharp,
     Icons.message,
     Icons.person,
   ];
+
   void _onTap(int index) {
     setState(() {
       _currentIndex = index;
@@ -31,6 +33,8 @@ class _CustomNavigationBarState extends State<CustomNavigationBar> {
   @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(
+      elevation: 0,
+      backgroundColor: Colors.white,
       currentIndex: _currentIndex,
       onTap: _onTap,
       type: BottomNavigationBarType.fixed,
